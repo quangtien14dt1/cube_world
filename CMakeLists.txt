@@ -10,7 +10,7 @@ add_definitions(-D GLM_ENABLE_EXPERIMENTAL)
 configure_file(src/helpers/RootDir.h.in src/helpers/RootDir.h)
 
 # Define the include DIRs
-include_directories( ${CMAKE_SOURCE_DIR}/src , ${CMAKE_SOURCE_DIR}/include )
+include_directories( ${CMAKE_SOURCE_DIR}/src/ , ${CMAKE_SOURCE_DIR}/include/ )
 
 # Define the executable
 file(GLOB_RECURSE SOURCE ${CMAKE_SOURCE_DIR}/src/*.c ${CMAKE_SOURCE_DIR}/src/*.cpp)

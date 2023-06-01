@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project(CubeWorld)
 
+
 # link_directories(${CMAKE_SOURCE_DIR}/lib) // this for prebuild libs on window system
 add_definitions(-D GLM_ENABLE_EXPERIMENTAL)
 

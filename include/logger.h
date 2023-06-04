@@ -87,6 +87,7 @@ class Logger {
 
 
 };
+// [Loger Type and colour ]
 
 void Colour::resetColour() {
     std::cout

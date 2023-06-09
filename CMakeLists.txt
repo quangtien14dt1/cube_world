@@ -13,8 +13,12 @@ file(GLOB_RECURSE object_source
 	${CMAKE_SOURCE_DIR}/src/*.c
 	${CMAKE_SOURCE_DIR}/src/*.cpp)
 
+configure_file(src/helpers/RootDir.h.in src/helpers/RootDir.h)
+include_directories(${CMAKE_BINARY_DIR}/src)
+
 # Define the executable
 add_executable(${PROJECT_NAME} ${header_source} ${object_source})
+
 include_directories(
 	${CMAKE_SOURCE_DIR}/include/
 	${CMAKE_SOURCE_DIR}/include/glm

@@ -11,8 +11,6 @@
 #include "shader_utils.h"
 
 
-
-
 /*
     Basic shader using all object include cube
 */

@@ -21,20 +21,24 @@ class Texture;
 class Application {
 
     public:
-
         Application();
+        /* Starting point processing */
+        int Run();
+
+        int InitWindow();
+        void loadContent();
+        void update();
+
+        void render();
 
         ~Application();
-
-        void Run();
-
-        void InitWindow();
 
     private:
 
         GLFWwindow *window_;//must be the first
 
         int width_, height_;
+        Mesh* meshObject{nullptr};
 };
 
 #endif

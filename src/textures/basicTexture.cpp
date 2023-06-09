@@ -3,13 +3,19 @@
 #include <iostream>
 #include <string>
 
-Texture::Texture(const std::string& path, std::string& image_type)
+Texture::Texture(const std::string& path, char* image_type)
 {
     data = nullptr;
-    type = image_type.data();
+    type = image_type;
     glGenTextures(1, &m_idTexture);
 
-    data = stbi_load(path.c_str(), &width, &height, &numberColor, 0);
+
+    std::string file_name = ROOT_DIR "resources/textures/" + path;
+    data = stbi_load(file_name.c_str(),
+                        &width,
+                        &height,
+                        &numberColor,
+                        0   );
     if(data) {
         switch (numberColor)
         {
@@ -39,7 +45,7 @@ unsigned int Texture::getTextureId() {
     return m_idTexture;
 }
 
-const char* Texture::getType() {
+char* Texture::getType() {
     return type;
 }
 
@@ -52,6 +58,24 @@ Texture::~Texture() {
 */
 void Texture::setupTexture(const GLuint type) {
         glBindTexture(GL_TEXTURE_2D, m_idTexture);
+        glTexStorage2D(
+                        GL_TEXTURE_2D,
+                        2 /* mip map levels */,
+                        GL_RGB8,
+                        width,
+                        height
+        );
+        glTexSubImage2D(
+                        GL_TEXTURE_2D,
+                        0 /* mip map level */,
+                        0 /* xoffset */,
+                        0 /* yoffset */,
+                        width,
+                        height,
+                        GL_RGBA,
+                        GL_UNSIGNED_BYTE,
+                        data
+        );
         glTexImage2D(GL_TEXTURE_2D, 0, type, width, height, 0, type, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 

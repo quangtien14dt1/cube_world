@@ -1,18 +1,17 @@
 #include "shader_utils.h"
 
-std::string loadFile(const std::string filename){
+std::string loadFile(const std::string& filename){
     if (filename.empty()) {
         std::cout << " there is no file path provied" << std::endl;
         return "";
     }
-    std::string     dir = "/home/yamaha/CubeWorld/";
+
     std::string     filetext;
     std::string     line;
-    std::ifstream   inFile(dir += filename);
+    std::ifstream   inFile(ROOT_DIR "resources/shaders/" + filename);
 
     // checking if create success
     if (!inFile) {
-        std::cout << stderr << "COULD NOT OPEN FILE : "<< filename << "\n";
         inFile.close();
         return "";
     }

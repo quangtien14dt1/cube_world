@@ -6,8 +6,9 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <helpers/RootDir.h>
 
-std::string loadFile(const std::string filename);
+std::string loadFile(const std::string& filename);
 
 GLuint compileShader(const GLchar *source, GLenum shaderType);
 

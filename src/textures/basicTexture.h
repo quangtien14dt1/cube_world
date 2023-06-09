@@ -7,7 +7,8 @@
 
 class Texture {
     public:
-        Texture(const std::string& file, std::string& type);
+        Texture(const std::string& file,
+                char* type);
         ~Texture();
 
         /*
@@ -21,12 +22,12 @@ class Texture {
             unifi function that passing image
         */
         void  textureUnit(BasicShader& shader, const char* uniform, GLuint unit);
-        const char* getType();
+        char* getType();
         unsigned int getTextureId();
 
     private:
         GLuint              m_idTexture;
-        const char*         type;
+        char*         type;
         int                 width, height , numberColor;
         unsigned char*      data;
 };

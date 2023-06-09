@@ -31,7 +31,7 @@ typedef enum {
 	CONSOLE_COLOUR_BG_DEFAULT = 49
 } ConsoleColour;
 
-class Colour {
+class Colours {
     public:
         static void resetColour();
 
@@ -64,9 +64,9 @@ class Logger {
 
         Logger& operator<< (const LogType type) {
             std::cout << "[";
-            Colour::consoleColour(type);
+            Colours::consoleColour(type);
             std::cout << lookupTable[type];
-            Colour::consoleColour(CONSOLE_COLOUR_BG_DEFAULT);
+            Colours::consoleColour(CONSOLE_COLOUR_BG_DEFAULT);
             std::cout << "]";
             return * this;
         }
@@ -89,7 +89,7 @@ class Logger {
 };
 // [Loger Type and colour ]
 
-void Colour::resetColour() {
+void Colours::resetColour() {
     std::cout
                 <<"\033[" << CONSOLE_COLOUR_BG_DEFAULT << "m"
                 << "\033[" << CONSOLE_COLOUR_FG_DEFAULT << "m";

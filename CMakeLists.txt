@@ -1,43 +1,61 @@
 # Copyright (C) 2023 QuangTien
 
 cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
-project(CubeWorld)
+project(cube_world)
 
-add_executable(
-    ${PROJECT_NAME}
-    src/shaders/basicShader.cpp
-    src/main.cpp
-)
+# Add header files
+file(GLOB_RECURSE header_source
+    ${CMAKE_SOURCE_DIR}/src/*.h
+	${CMAKE_SOURCE_DIR}/src/*.hpp)
 
+# Add source files
+file(GLOB_RECURSE object_source
+	${CMAKE_SOURCE_DIR}/src/*.c
+	${CMAKE_SOURCE_DIR}/src/*.cpp)
+
+# Define the executable
+add_executable(${PROJECT_NAME} ${header_source} ${object_source})
+include_directories(
+	${CMAKE_SOURCE_DIR}/include/
+	${CMAKE_SOURCE_DIR}/include/glm
+    ${CMAKE_SOURCE_DIR}/include/json)
+
+# We need a CMAKE_DIR with some code to find external dependencies
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-include_directories(
-    "${CMAKE_SOURCE_DIR}/include"
-    "${CMAKE_SOURCE_DIR}/include/glad"
-    "${CMAKE_SOURCE_DIR}/include/glm"
-)
 
+# OpenGL
 set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
-message(STATUS "OpenGL included founded")
 
-add_library(STB_IMAGE "thirdparty/stb_image.cpp")
-add_library(GLAD "thirdparty/glad.c")
+# Glew
+find_package(GLEW REQUIRED)
+message(STATUS "Glew included at ${GLEW_INCLUDE_DIRS}")
 
-# find_package(GLM REQUIRED)
-# message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
+# GLM
+find_package(GLM REQUIRED)
+message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
 
+# GLFW
 find_package(GLFW3 REQUIRED)
 message(STATUS "Found GLFW3 in ${GLFW3_INCLUDE_DIR}")
 
+# ASSIMP
 find_package(ASSIMP REQUIRED)
 message(STATUS "Found ASSIMP in ${ASSIMP_INCLUDE_DIR}")
 
-# Put all libraries into a variable
-set(LIBS ${GLFW3_LIBRARY} ${OPENGL_LIBRARY} GLAD ${CMAKE_DL_LIBS} ${ASSIMP_LIBRARY} STB_IMAGE)
+# STB_IMAGE
+add_library(STB_IMAGE "thirdparty/stb_image.cpp")
 
+set(LIBS
+    ${GLFW3_LIBRARY}
+    ${OPENGL_LIBRARY}
+    ${CMAKE_DL_LIBS}
+    ${ASSIMP_LIBRARY}
+    ${GLEW_LIBRARIES}
+    STB_IMAGE
+)
 
-# Define the link libraries
 target_link_libraries(${PROJECT_NAME} ${LIBS})
 
 # Create virtual folders to make it look nicer in VS

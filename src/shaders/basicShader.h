@@ -40,11 +40,13 @@ class BasicShader {
         /* delete shader program */
         void Delete();
 
+        /* get location on buffer data that need to modifile */
+        GLuint getUniformLocation(const std::string & uniform_name);
+
     private:
 
 
-        /* get location on buffer data that need to modifile */
-        GLuint getUniformLocation(const std::string & uniform_name);
+
 };
 
 

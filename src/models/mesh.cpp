@@ -17,10 +17,8 @@ void Mesh::setupMesh() {
 
     /* Link VBO with m_vao*/
     m_vao.LinkAttrib(m_vbo, 0, 3, GL_FLOAT, sizeof(Vertex), (void*)0);
-	m_vao.LinkAttrib(m_vbo, 1, 3, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
+	m_vao.LinkAttrib(m_vbo, 1, 2, GL_FLOAT, sizeof(Vertex), (void*)(3 * sizeof(float)));
 	// m_vao.LinkAttrib(m_vbo, 2, 2, GL_FLOAT, sizeof(Vertex), (void*)(6 * sizeof(float)));
-    // [ 0 1 2][3 4 5][6 7]
-    // ---3---|--3---|--2--|
 
     /* Stop using shader m_vao */
     m_vao.Unbind();
@@ -32,12 +30,11 @@ void Mesh::Draw(BasicShader &shader) {
     shader.Activate();
 
     /* Bind and activate texture */
-    textures[0].textureUnit(shader, "texture1" , 0);
-    textures[1].textureUnit(shader, "texture2" , 1);
+    textures[0].textureUnit(shader, "tex_sampler" , 0);
+    textures[0].bindTexture();
 
     m_vao.Bind();
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    m_vao.Unbind();
 }

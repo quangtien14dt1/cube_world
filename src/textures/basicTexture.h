@@ -16,6 +16,7 @@ class Texture {
         */
         void setupTexture(const GLuint type);
         void unbindTexture();
+        void bindTexture();
         void deleteTexture();
 
         /*

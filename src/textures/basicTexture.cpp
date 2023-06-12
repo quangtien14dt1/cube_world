@@ -15,7 +15,7 @@ Texture::Texture(const std::string& path, char* image_type)
                         &width,
                         &height,
                         &numberColor,
-                        0   );
+                        4  );
     if(data) {
         switch (numberColor)
         {
@@ -51,6 +51,11 @@ char* Texture::getType() {
 
 Texture::~Texture() {
     glDeleteTextures(1, &m_idTexture);
+}
+
+void Texture::bindTexture() {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_idTexture);
 }
 
 /*
@@ -102,8 +107,9 @@ void Texture::textureUnit ( BasicShader& shader,
                                  const char* uniform,
                                  GLuint unit )
 {
-	GLuint texUni = glGetUniformLocation(shader.m_shaderProgram, uniform);
-	shader.Activate();
+    shader.Activate();
+	GLuint location  = shader.getUniformLocation(uniform);
+
     // now passing acctualy texture in GPU
-	glUniform1i(texUni, unit);
+	glUniform1i(location, unit);
 }

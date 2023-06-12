@@ -90,6 +90,6 @@ void BasicShader::Delete() {
 
 GLuint BasicShader::getUniformLocation(const std::string & uniform_name){
     Activate();
-    GLuint location  = glGetUniformLocation(m_shaderProgram, "projViewMatrix");
+    GLuint location  = glGetUniformLocation(m_shaderProgram, uniform_name.c_str());
     return location;
 }

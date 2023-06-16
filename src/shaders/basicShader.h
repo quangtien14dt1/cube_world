@@ -1,13 +1,10 @@
 /**
  * Copyright (C) 2023 QuangTien
  **/
-#ifndef SHADER_H_INCLUDED
-#define SHADER_H_INCLUDED
+#ifndef SHADER_CLASS_H
+#define SHADER_CLASS_H
 
-#include <iostream>
-#include <string>
-#include <GL/glew.h>
-#include "../math.h"
+#include "../untils/math.h"
 #include "shader_utils.h"
 
 

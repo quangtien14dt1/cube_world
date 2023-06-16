@@ -2,7 +2,6 @@
 #ifndef VBO_CLASS_H
 #define VBO_CLASS_H
 
-#include <GL/glew.h>
 #include <vector>
 #include "type.h"
 

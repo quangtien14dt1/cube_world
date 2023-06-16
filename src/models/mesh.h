@@ -1,7 +1,5 @@
-#ifndef MESH_H_INCLUDED
-#define MESH_H_INCLUDED
-
-#include <GL/glew.h>
+#ifndef MESH_CLASS_H
+#define MESH_CLASS_H
 
 #include "VAO.h"
 #include "EBO.h"
@@ -10,7 +8,7 @@
     include for drawing using shader and camera
 */
 #include "../shaders/basicShader.h"
-#include "../camera/camera.h"
+#include "../player/camera.h"
 #include "../textures/basicTexture.h"
 
 

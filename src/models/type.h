@@ -3,7 +3,7 @@
 
 #include <GL/glew.h>
 #include <string>
-#include "../math.h"
+#include "../untils/math.h"
 
 
 struct Vertex {

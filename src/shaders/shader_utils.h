@@ -1,8 +1,8 @@
-#ifndef SHADER_UNTIL_H_INCLUDED
-#define SHADER_UNTIL_H_INCLUDED
+#ifndef SHADER_UNTIL_CLASS_H
+#define SHADER_UNTIL_CLASS_H
 
 #include <GL/glew.h>
-#include <glm/glm.hpp>
+#include <GLFW/glfw3.h>
 #include <string>
 #include <iostream>
 #include <fstream>

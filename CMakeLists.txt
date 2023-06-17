@@ -48,6 +48,10 @@ message(STATUS "Found GLFW3 in ${GLFW3_INCLUDE_DIR}")
 find_package(ASSIMP REQUIRED)
 message(STATUS "Found ASSIMP in ${ASSIMP_INCLUDE_DIR}")
 
+find_package(SFML COMPONENTS window graphics system)
+message(STATUS "Found SFML in ${SFML_INCLUDE_DIR}")
+
+
 # STB_IMAGE
 add_library(STB_IMAGE "thirdparty/stb_image.cpp")
 
@@ -57,6 +61,9 @@ set(LIBS
     ${CMAKE_DL_LIBS}
     ${ASSIMP_LIBRARY}
     ${GLEW_LIBRARIES}
+    sfml-system
+    sfml-graphics
+    sfml-window
     STB_IMAGE
 )
 

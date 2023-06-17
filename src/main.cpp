@@ -7,7 +7,7 @@ int main() {
     try
     {
         Application app;
-        app.Run();
+        app.runLoop();
     }
     catch(const std::exception& e)
     {

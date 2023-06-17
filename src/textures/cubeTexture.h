@@ -4,12 +4,13 @@
 #include <GL/glew.h>
 #include <array>
 #include <string>
+#include "basicTexture.h"
 
-class BasicTexture {
+class CubeTextures  {
     public:
-        BasicTexture    () = default;
-        BasicTexture    (const std::array<std::string , 6> &files);
-        ~BasicTexture   ();
+        CubeTextures    () = default;
+        CubeTextures    (const std::array<std::string , 6> &files);
+        ~CubeTextures   ();
 
         /*
             Load image by this order
@@ -20,8 +21,14 @@ class BasicTexture {
             -back
             -front
         */
-        void bindTexture        ();
-        void unbindTexture      ();
+        void bindTexture();
+        void unbindTexture();
+        void deleteTexture();
+        void setupTexture(const GLuint type);
+
+        void  textureUnit(BasicShader& shader, const char* uniform, GLuint unit);
+        char* getType();
+        unsigned int getTextureId();
 
     private:
         GLuint m_idTexture;

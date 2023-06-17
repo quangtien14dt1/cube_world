@@ -1,35 +1,44 @@
 #ifndef WORLDCONTROLLER_CLASS_H
 #define WORLDCONTROLLER_CLASS_H
 
+#include <SFML/Graphics.hpp>
 #include "models/Database.h"
 #include "player/player.h"
+#include "shaders/basicShader.h"
+#include "textures/basicTexture.h"
 
-    // m_pPlayer = new Player(m_pWorldController,m_pDatabase);
-    // m_pDatabase = new Database(m_pPlayer, m_pWorldController);
+class Application;
 
 class WorldController {
 
     public:
-        explicit WorldController(GLFWwindow *window);
+        explicit WorldController(Application* app);
         ~WorldController();
 
-        void Resize(int width, int height);
-        void Update(sf::Time& deltaTime);
-        int width_, height_;
+        void Update(float deltaTime);
+        void handleInput(float deltaTime);
+        void handleScrollWheel(int steps);
+
         bool control_;
+        float deltaTime;
+
+        /*
+            Sharing using for shader and texture
+            we chosing shader and combine with with "model matrix" store on database
+            and Player will provine "view maxtrix * projection" matrix
+        */
+        void addNewShader(char* vertexPath,char* fragPath , std::string name);
+        void addNewTexture(const std::string& file, char* type, std::string name);
+
     protected:
         /* hold state from parent  */
-        GLFWwindow * m_pWindow;
+        Application* m_pApplication;
 
         /* hold start of child instance */
         Player* m_pPlayer;
         Database*  m_pDatabase;
-        Framerate* m_pFrameRate;
-
-        static void FocusCallback(GLFWwindow *window, int focused);
-        static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
-        static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
-        static void ScrollCallback(GLFWwindow *window, double x_offset, double y_offset);
+        std::vector<BasicShader>  using_shaders;
+        std::vector<Texture>  using_textures;
 
 };
 

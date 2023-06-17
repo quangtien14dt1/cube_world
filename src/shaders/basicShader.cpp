@@ -8,8 +8,11 @@ BasicShader::~BasicShader() {
 
 BasicShader::BasicShader(
                             const std::string & vertexPath,
-                            const std::string & fragPath    ) {
+                            const std::string & fragPath,
+                            std::string & shaderName   )
+{
 
+    shaderName = shaderName;
     m_shaderProgram = 0;
     // file name by key , code read from by value
     const std::string BasicShaderCodes[2] = {   loadFile(vertexPath),

@@ -8,8 +8,9 @@
 class Texture {
     public:
         Texture(const std::string& file,
-                char* type);
+                char* type, std::string & name);
         ~Texture();
+        std::string textureName;
 
         /*
             usage functions for textures

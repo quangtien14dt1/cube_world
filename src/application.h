@@ -7,12 +7,7 @@
 #include <stb_image.h>
 #include <vector>
 
-#include "models/type.h"
-#include "shaders/basicShader.h"
-#include "textures/basicTexture.h"
-#include "models/mesh.h"
 #include "worldController.h"
-#include "models/Database.h"
 #include "context.h"
 
 class Application {
@@ -24,6 +19,7 @@ class Application {
         /* Starting point processing */
         void runLoop();
         void handleEvents();
+        const sf::RenderWindow& getWindow() const { return m_context.window; }
 
         ~Application();
 
@@ -33,10 +29,7 @@ class Application {
         Context m_context;
 
         WorldController* m_pWorldController;
-        int     width_, height_;
-        int     frameCount = 0;
-        float   gameTime = 0.0f;
-        Mesh* meshObject{nullptr};
+
 };
 
 #endif

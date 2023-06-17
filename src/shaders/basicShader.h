@@ -15,10 +15,12 @@ class BasicShader {
 
     public:
         GLuint m_shaderProgram;
+        const std::string shaderName;
 
         BasicShader(
             const std::string & vertexPath,
-            const std::string & fragPath
+            const std::string & fragPath,
+            std::string & name
         );
 
         ~BasicShader();

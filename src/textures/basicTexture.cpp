@@ -3,8 +3,9 @@
 #include <iostream>
 #include <string>
 
-Texture::Texture(const std::string& path, char* image_type)
+Texture::Texture(const std::string& path, char* image_type, std::string & name)
 {
+    textureName = name;
     data = nullptr;
     type = image_type;
     glGenTextures(1, &m_idTexture);

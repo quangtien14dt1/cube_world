@@ -1,6 +1,7 @@
 #ifndef PLAYER_CLASS_H
 #define PLAYER_CLASS_H
 
+#include <SFML/Graphics.hpp>
 #include "camera.h"
 #include "frameRate.h"
 
@@ -13,9 +14,11 @@ class Player {
         explicit Player(WorldController* controller, Database * database);
         ~Player();
 
-        void ProcessKeyboard(Camera_Movement direction, float deltaTime);
-        void ProcessMouseMovement(float xoffset, float yoffset);
-        void ProcessMouseScroll(float yoffset);
+        void handleInput(const sf::RenderWindow& window, float delta);
+
+        void handleKeyboard(float deltaTime);
+        void handleMouseMovement(const sf::RenderWindow& window);
+        void handleMouseScroll(int step);   // scroll wheel step
 
         glm::mat4 GetCameraMatrix();
 
@@ -25,7 +28,7 @@ class Player {
         Camera * m_pCamera;
         Database * m_pDatabase;
         /* Update with shader manager */
-        BasicShader* shader;
+        std::vector<BasicShader*>  using_shader;
 
         bool jumping_ = false;
         bool flying_;
